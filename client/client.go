@@ -2766,6 +2766,8 @@ func (c *Client) allAllocs() map[string]*structs.Allocation {
 	allocs := make(map[string]*structs.Allocation, len(ars))
 	for _, ar := range ars {
 		a := ar.Alloc()
+		as := ar.AllocState()
+		a.ClientStatus = as.ClientStatus
 		allocs[a.ID] = a
 	}
 	return allocs
